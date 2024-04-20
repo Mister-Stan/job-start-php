@@ -1,0 +1,16 @@
+{
+    "name": "mister-stan/job-start-php",
+    "description": "Job listing application",
+    "authors": [
+        {
+        "name": "donnieDarko",
+        "email": "donniedarko1987@yahoo.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Framework\\": "Framework/",
+            "App\\": "App/"
+        }
+    }
+}
