@@ -22,7 +22,7 @@ function loadView($name, $data = [])
 {
 
     $viewPath =  basePath("App/views/{$name}.view.php");
-    
+
 
     if (file_exists($viewPath)) {
         extract($data);
@@ -82,7 +82,8 @@ function inspectAndDie($value)
  * @param string $salary
  * @return string Formatted Salary
  */
-function formatSalary($salary) {
+function formatSalary($salary)
+{
     return '$' . number_format(floatval($salary));
 }
 
@@ -92,6 +93,19 @@ function formatSalary($salary) {
  * @param string $dirty
  * @return string
  */
-function sanitize($dirty) {
+function sanitize($dirty)
+{
     return filter_var(trim($dirty), FILTER_SANITIZE_SPECIAL_CHARS);
+}
+
+/**
+ * Redirect to a given URL
+ * 
+ * @param string $url
+ * @return void
+ */
+function redirect($url)
+{
+    header("Location: {$url}");
+    exit();
 }
