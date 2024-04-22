@@ -5,7 +5,7 @@
 <section class="container mx-auto p-4 mt-4">
     <div class="rounded-lg shadow-md bg-white p-3">
         <div class="flex justify-between items-center">
-            <a class="block p-4 text-blue-700" href="/listings">
+            <a class="block p-4 text-blue-700" href="/test-project/workopia/public/listings">
                 <i class="fa fa-arrow-alt-circle-left"></i>
                 Back To Listings
             </a>
@@ -13,6 +13,7 @@
                 <a href="/edit" class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded">Edit</a>
                 <!-- Delete Form -->
                 <form method="POST">
+                    <input type="hidden" name="_method" value="DELETE">
                     <button type="submit" class="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded">Delete</button>
                 </form>
                 <!-- End Delete Form -->
