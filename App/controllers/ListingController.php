@@ -17,7 +17,7 @@ class ListingController
 
     /**
      * Show all listings
-     * 
+     *
      * @return void
      */
 
@@ -27,13 +27,13 @@ class ListingController
         $listings = $this->db->query('SELECT * FROM listings')->fetchAll();
 
         loadView('listings/index', [
-            'listings' => $listings
+            'listings' => $listings,
         ]);
     }
 
     /**
      * Show the create listing form
-     * 
+     *
      * @return void
      */
 
@@ -44,7 +44,7 @@ class ListingController
 
     /**
      * Show a single listing
-     * 
+     *
      * @param array $params
      * @return void
      */
@@ -54,7 +54,7 @@ class ListingController
         $id = $params['id'] ?? '';
 
         $params = [
-            'id' => $id
+            'id' => $id,
         ];
 
         $listing = $this->db->query('SELECT * FROM listings WHERE id = :id', $params)->fetch();
@@ -70,7 +70,7 @@ class ListingController
 
     /**
      * Store data in database
-     * 
+     *
      * @return void
      */
     public function store()
@@ -88,7 +88,7 @@ class ListingController
             'phone',
             'email',
             'requirements',
-            'benefits'
+            'benefits',
         ];
 
         $newListingData = array_intersect_key($_POST, array_flip($allowedFields));
@@ -114,19 +114,17 @@ class ListingController
             }
         }
 
-
         if (!empty($errors)) {
             // Reload view with errors
             loadView(
                 'listings/create',
                 [
                     'errors' => $errors,
-                    'listing' => $newListingData
+                    'listing' => $newListingData,
                 ]
             );
         } else {
             // Submit data
-
 
             $fields = [];
 
@@ -136,7 +134,7 @@ class ListingController
 
             $fields = implode(', ', $fields);
 
-            $values  = [];
+            $values = [];
 
             foreach ($newListingData as $field => $value) {
                 // Convert empty strings to NULL
@@ -155,7 +153,6 @@ class ListingController
 
             $this->db->query($query, $newListingData);
 
-        
             redirect('listings');
         }
     }
@@ -165,11 +162,12 @@ class ListingController
      * @param array $params
      * @return void
      */
-    public function destroy($params) {
+    public function destroy($params)
+    {
         $id = $params['id'];
 
         $params = [
-            'id' => $id
+            'id' => $id,
         ];
 
         $listing = $this->db->query('SELECT * FROM listings WHERE id = :id', $params)->fetch();
@@ -181,6 +179,35 @@ class ListingController
 
         $this->db->query('DELETE FROM listings WHERE id = :id', $params);
 
+        // Set flash message
+        $_SESSION['success_message'] = 'Listing deleted successfully';
+
         redirect('/test-project/workopia/public/listings');
+    }
+
+    /**
+     * Show the edit listing edit form
+     *
+     * @param array $params
+     * @return void
+     */
+    public function edit($params)
+    {
+        $id = $params['id'] ?? '';
+        $params = [
+            'id' => $id,
+        ];
+
+        $listing = $this->db->query('SELECT * FROM listings WHERE id = :id', $params)->fetch();
+
+        // Check if listing exists
+        if (!$listing) {
+            ErrorController::notFound('Listing not found');
+            return;
+        }
+
+        loadView('listings/edit', [
+            'listing' => $listing,
+        ]);
     }
 }
