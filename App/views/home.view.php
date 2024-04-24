@@ -1,6 +1,6 @@
 <?= loadPartial('navbar') ?>
-<?= loadPartial('showcase-search') ?>
 <?= loadPartial('head') ?>
+<?= loadPartial('showcase-search') ?>
 <?= loadPartial('top-banner') ?>
 
 <!-- Job Listings -->
