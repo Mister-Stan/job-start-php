@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use Framework\Database;
 
-class UserController
+class UserController3
 {
     protected $db;
 
@@ -34,4 +34,15 @@ class UserController
     {
         return loadView('users/create');
     }
+
+    /**
+     * Store a new user in the database
+     *
+     * @return void
+     */
+    public function store()
+    {
+        inspectAndDie("stored");
+    }
 }
+//   sdadsa
