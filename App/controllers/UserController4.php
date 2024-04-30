@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use Framework\Database;
 
-class UserController3
+class UserController4
 {
     protected $db;
 
