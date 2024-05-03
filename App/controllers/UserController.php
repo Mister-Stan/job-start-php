@@ -57,6 +57,18 @@ class UserController
             $errors['email'] = 'Please enter a valid email address';
         }
 
+        if (!Validation::string($name, 2, 50)) {
+            $errors['name'] = 'Name must between 2 and 50 characters';
+        }
+
+        if (!Validation::string($password, 6, 50)) {
+            $errors['password'] = 'Password must be at least 6 characters';
+        }
+
+        if (!Validation::match($password, $passwordConfirmation)) {
+            $errors['password_confirmation'] = 'Passwords do not match';
+        }
+
         if (!empty($errors)) {
             return loadView('users/create', [
                 'errors' => $errors,
@@ -65,12 +77,12 @@ class UserController
                     'email' => $email,
                     'city' => $city,
                     'state' => $state,
-                ]
+                ],
             ]);
             exit;
+        } else {
+            inspectAndDie("Stored");
         }
-
 
     }
 }
-
