@@ -18,6 +18,7 @@
               name="name"
               placeholder="Full Name"
               class="w-full px-4 py-2 border rounded focus:outline-none"
+              value="<?= htmlspecialchars($user['name'] ?? '') ?>"
             />
           </div>
           <div class="mb-4">
@@ -26,6 +27,7 @@
               name="email"
               placeholder="Email Address"
               class="w-full px-4 py-2 border rounded focus:outline-none"
+              value="<?= htmlspecialchars($user['email'] ?? '') ?>"
             />
           </div>
            <div class="mb-4">
@@ -34,6 +36,7 @@
               name="city"
               placeholder="City"
               class="w-full px-4 py-2 border rounded focus:outline-none"
+              value="<?= htmlspecialchars($user['city'] ?? '') ?>"
             />
           </div>
            <div class="mb-4">
@@ -42,6 +45,7 @@
               name="state"
               placeholder="State"
               class="w-full px-4 py-2 border rounded focus:outline-none"
+              value="<?= htmlspecialchars($user['state'] ?? '') ?>"
             />
           </div>
           <div class="mb-4">
@@ -50,6 +54,7 @@
               name="password"
               placeholder="Password"
               class="w-full px-4 py-2 border rounded focus:outline-none"
+              
             />
           </div>
           <div class="mb-4">

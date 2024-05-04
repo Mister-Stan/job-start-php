@@ -11,7 +11,6 @@ class UserController
 
     public function __construct()
     {
-
         $config = require basePath('config/db.php');
         $this->db = new Database($config);
     }
@@ -80,9 +79,35 @@ class UserController
                 ],
             ]);
             exit;
-        } else {
-            inspectAndDie("Stored");
         }
 
+        // Check if email already exists
+        $params = [
+            'email' => $email,
+        ];
+
+        $user = $this->db->query('SELECT * FROM users WHERE email = :email', $params)->fetch();
+
+
+        if ($user) {
+            $errors['email'] = 'Email already exists';
+            loadView('users/create', [
+                'errors' => $errors,
+            ]);
+            exit;
+        }
+
+        // Create user account
+        $params = [
+            'name' => $name,
+            'email' => $email,
+            'city' => $city,
+            'state' => $state,
+            'password' => password_hash($password, PASSWORD_DEFAULT),
+        ];
+
+        $this->db->query('INSERT INTO users (name, email, city, state, password) VALUES (:name, :email, :city, :state, :password)', $params);
+
+        redirect('/test-project/workopia/public/');
     }
 }
