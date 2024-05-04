@@ -1,5 +1,5 @@
 <!-- Nav -->
-<header class="bg-blue-900 text-white p-4">
+<header class="bg-blue-800 text-white p-4">
   <div class="container mx-auto flex flex-wrap justify-between items-center">
     <h1 class="text-3xl font-semibold">
       <a href="/test-project/workopia/public/">Workopia</a>
