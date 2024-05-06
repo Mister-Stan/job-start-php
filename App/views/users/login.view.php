@@ -6,11 +6,11 @@
     <div class="flex justify-center items-center mt-20">
       <div class="bg-white p-8 rounded-lg shadow-md w-full md:w-500 mx-6">
         <h2 class="text-3xl text-center font-bold mb-3">Login</h2>
+
+        <?= loadPartial('errors', [
+          'errors' => $errors ?? []]) ?>
         
-        
-        
-        
-        <form>
+          <form method="POST" action="/test-project/workopia/public/auth/login">
           <div class="mb-3">
             <input
               type="email"

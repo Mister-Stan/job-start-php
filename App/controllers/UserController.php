@@ -3,8 +3,8 @@
 namespace App\Controllers;
 
 use Framework\Database;
-use Framework\Validation;
 use Framework\Session;
+use Framework\Validation;
 
 class UserController
 {
@@ -89,7 +89,6 @@ class UserController
 
         $user = $this->db->query('SELECT * FROM users WHERE email = :email', $params)->fetch();
 
-
         if ($user) {
             $errors['email'] = 'Email already exists';
             loadView('users/create', [
@@ -120,22 +119,88 @@ class UserController
             'state' => $state,
         ]);
 
-
         redirect('/test-project/workopia/public/');
     }
 
     /**
      * Logout a user and kill session
-     * 
+     *
      * @return void
      */
-    public function logout() {
+    public function logout()
+    {
         Session::clearAll();
-    
+
         $params = session_get_cookie_params();
-        setCookie("PHPSESSID", "", time() - 86400, $params["path"], $params["domain"]);
+        setCookie('PHPSESSID', '', time() - 86400, $params['path'], $params['domain']);
+
+        redirect('/test-project/workopia/public/');
+    }
+
+    /**
+     * Authenticate a user with email and password
+     *
+     * @return void
+     */
+    public function authenticate()
+    {
+        $email = $_POST['email'] ?? '';
+        $password = $_POST['password'] ?? '';
+
+        $errors = [];
+
+        // Validation
+        if (!Validation::email($email)) {
+            $errors['email'] = 'Please enter a valid email address';
+        }
+
+        if (!Validation::string($password, 6, 50)) {
+            $errors['password'] = 'Password must be at least 6 characters';
+        }
+
+        // Check for errors
+        if (!empty($errors)) {
+            loadView('users/login', [
+                'errors' => $errors,
+            ]);
+            exit;
+        }
+
+        // Check for email
+        $params = [
+            'email' => $email,
+        ];
+
+        $user = $this->db->query('SELECT * FROM users WHERE email = :email', $params)->fetch();
+
+        if (!$user) {
+            $errors['email'] = 'Incorrect email or password';
+            loadView('users/login', [
+                'errors' => $errors,
+            ]);
+            exit;
+        }
+
+        // Check if password is correct
+        if (!password_verify($password, $user->password)) {
+            $errors['email'] = 'Incorrect email or password';
+            loadView('users/login', [
+                'errors' => $errors,
+            ]);
+            exit;
+        }
+
+        // Set user session
+        Session::set('user', [
+            'id' => $user->id,
+            'name' => $user->name,
+            'email' => $user->email,
+            'city' => $user->city ?? '',
+            'state' => $user->state ?? '',
+        ]);
 
         redirect('/test-project/workopia/public/');
 
+        
     }
 }
