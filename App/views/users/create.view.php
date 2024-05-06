@@ -4,7 +4,7 @@
  <!-- Registration Form Box -->
     <div class="flex justify-center items-center mt-20">
       <div class="bg-white p-8 rounded-lg shadow-md w-full md:w-500 mx-6">
-        <h2 class="text-4xl text-center font-bold mb-4">Register</h2>
+        <h2 class="text-3xl text-center font-bold mb-3">Register</h2>
 
         <?= loadPartial('errors', [
           'errors' => $errors ?? []
@@ -12,7 +12,7 @@
           ?>
 
         <form method="POST" action="/test-project/workopia/public/auth/register">
-          <div class="mb-4">
+          <div class="mb-3">
             <input
               type="text"
               name="name"
@@ -21,7 +21,7 @@
               value="<?= htmlspecialchars($user['name'] ?? '') ?>"
             />
           </div>
-          <div class="mb-4">
+          <div class="mb-3">
             <input
               type="email"
               name="email"
@@ -30,7 +30,7 @@
               value="<?= htmlspecialchars($user['email'] ?? '') ?>"
             />
           </div>
-           <div class="mb-4">
+           <div class="mb-3">
             <input
               type="text"
               name="city"
@@ -39,7 +39,7 @@
               value="<?= htmlspecialchars($user['city'] ?? '') ?>"
             />
           </div>
-           <div class="mb-4">
+           <div class="mb-3">
             <input
               type="text"
               name="state"
@@ -48,7 +48,7 @@
               value="<?= htmlspecialchars($user['state'] ?? '') ?>"
             />
           </div>
-          <div class="mb-4">
+          <div class="mb-3">
             <input
               type="password"
               name="password"
@@ -57,7 +57,7 @@
               
             />
           </div>
-          <div class="mb-4">
+          <div class="mb-3">
             <input
               type="password"
               name="password_confirmation"

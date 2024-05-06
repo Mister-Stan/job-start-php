@@ -21,7 +21,7 @@
             </div>
         </div>
         <div class="p-4">
-            <h2 class="text-xl font-semibold"><?= $listing->title ?></h2>
+            <h2 class="text-2xl font-semibold"><?= $listing->title ?></h2>
             <p class="text-gray-700 text-lg mt-2">
                 <?= $listing->description ?>
             </p>

@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use Framework\Database;
 use Framework\Validation;
+use Framework\Session;
 
 class UserController
 {
@@ -108,6 +109,33 @@ class UserController
 
         $this->db->query('INSERT INTO users (name, email, city, state, password) VALUES (:name, :email, :city, :state, :password)', $params);
 
+        // Get new user ID
+        $userId = $this->db->conn->lastInsertId();
+
+        Session::set('user', [
+            'id' => $userId,
+            'name' => $name,
+            'email' => $email,
+            'city' => $city,
+            'state' => $state,
+        ]);
+
+
         redirect('/test-project/workopia/public/');
+    }
+
+    /**
+     * Logout a user and kill session
+     * 
+     * @return void
+     */
+    public function logout() {
+        Session::clearAll();
+    
+        $params = session_get_cookie_params();
+        setCookie("PHPSESSID", "", time() - 86400, $params["path"], $params["domain"]);
+
+        redirect('/test-project/workopia/public/');
+
     }
 }
