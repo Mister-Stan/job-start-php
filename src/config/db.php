@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'host' => 'localhost',
-    'port' => '3306',
-    'dbname' => 'u197006476_workopia',
-    'username' => 'u197006476_deploy',
-    'password' => 'Portsmouth2024@'
+    'host' => getenv('DB_HOST'),
+    'port' => getenv('DB_PORT'),
+    'database' => getenv('DB_DATABASE'),
+    'username' => getenv('DB_USERNAME'),
+    'password' => getenv('DB_PASSWORD'),
 ];

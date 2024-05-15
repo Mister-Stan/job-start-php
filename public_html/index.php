@@ -1,6 +1,9 @@
 <?php
 require __DIR__ . '/../src/vendor/autoload.php';
 
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/..');
+$dotenv->load();
+
 use Framework\Router;
 use Framework\Session;
 
