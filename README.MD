@@ -5,6 +5,12 @@
 
 A web application for job listings built with PHP, allowing users to browse, search, create, edit, and delete job listings. The application provides a user-friendly interface for job seekers to find relevant job opportunities and for employers to post job vacancies.
 
+![Screenshot description](app-screenshots/screen1.png)
+![Screenshot description](app-screenshots/screen2.png)
+![Screenshot description](app-screenshots/screen3.png)
+![Screenshot description](app-screenshots/screen4.png)
+
+
 ## Features
 
 - User authentication and authorization
